@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "tournament": "FIFA World Cup 2026",
+    "predictionsOpen": false,
+    "opensText": "Predictions open once the group stage ends (today). Check back when the 32 knockout teams are set.",
+    "lockDeadlineIso": "2026-06-28T16:00:00-04:00",
+    "lockNote": "PLACEHOLDER — set to the exact kickoff of the first Round-of-32 match.",
+    "thirdPlacePoints": 4
+  },
+
+  "teams": {},
+
+  "rounds": [
+    {
+      "id": "R32",
+      "name": "Round of 32",
+      "pointsPerGame": 1,
+      "games": [
+        { "id": "R32-1",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-2",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-3",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-4",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-5",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-6",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-7",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-8",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-9",  "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-10", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-11", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-12", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-13", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-14", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-15", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } },
+        { "id": "R32-16", "slotA": { "label": "TBD", "teamId": null }, "slotB": { "label": "TBD", "teamId": null } }
+      ]
+    },
+    {
+      "id": "R16",
+      "name": "Round of 16",
+      "pointsPerGame": 2,
+      "games": [
+        { "id": "R16-1", "feederA": "R32-1",  "feederB": "R32-2"  },
+        { "id": "R16-2", "feederA": "R32-3",  "feederB": "R32-4"  },
+        { "id": "R16-3", "feederA": "R32-5",  "feederB": "R32-6"  },
+        { "id": "R16-4", "feederA": "R32-7",  "feederB": "R32-8"  },
+        { "id": "R16-5", "feederA": "R32-9",  "feederB": "R32-10" },
+        { "id": "R16-6", "feederA": "R32-11", "feederB": "R32-12" },
+        { "id": "R16-7", "feederA": "R32-13", "feederB": "R32-14" },
+        { "id": "R16-8", "feederA": "R32-15", "feederB": "R32-16" }
+      ]
+    },
+    {
+      "id": "QF",
+      "name": "Quarter-finals",
+      "pointsPerGame": 4,
+      "games": [
+        { "id": "QF-1", "feederA": "R16-1", "feederB": "R16-2" },
+        { "id": "QF-2", "feederA": "R16-3", "feederB": "R16-4" },
+        { "id": "QF-3", "feederA": "R16-5", "feederB": "R16-6" },
+        { "id": "QF-4", "feederA": "R16-7", "feederB": "R16-8" }
+      ]
+    },
+    {
+      "id": "SF",
+      "name": "Semi-finals",
+      "pointsPerGame": 8,
+      "games": [
+        { "id": "SF-1", "feederA": "QF-1", "feederB": "QF-2" },
+        { "id": "SF-2", "feederA": "QF-3", "feederB": "QF-4" }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Final",
+      "pointsPerGame": 16,
+      "games": [
+        { "id": "F-1", "feederA": "SF-1", "feederB": "SF-2" }
+      ]
+    },
+    {
+      "id": "TP",
+      "name": "Third-place play-off",
+      "pointsPerGame": 4,
+      "optional": true,
+      "games": [
+        { "id": "TP-1", "feederA": "SF-1", "feederB": "SF-2", "losers": true }
+      ]
+    }
+  ],
+
+  "results": {
+    "R32-1": null, "R32-2": null, "R32-3": null, "R32-4": null,
+    "R32-5": null, "R32-6": null, "R32-7": null, "R32-8": null,
+    "R32-9": null, "R32-10": null, "R32-11": null, "R32-12": null,
+    "R32-13": null, "R32-14": null, "R32-15": null, "R32-16": null,
+    "R16-1": null, "R16-2": null, "R16-3": null, "R16-4": null,
+    "R16-5": null, "R16-6": null, "R16-7": null, "R16-8": null,
+    "QF-1": null, "QF-2": null, "QF-3": null, "QF-4": null,
+    "SF-1": null, "SF-2": null,
+    "F-1": null,
+    "TP-1": null,
+    "finalTotalGoals": null
+  }
+}

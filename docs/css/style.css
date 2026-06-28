@@ -1,0 +1,302 @@
+/* World Cup 2026 Predictions — styles */
+
+:root {
+    --bg: #0e1116;
+    --bg-elev: #171c24;
+    --bg-card: #1b212b;
+    --line: #2a323e;
+    --text: #eef2f6;
+    --muted: #9aa7b5;
+    --accent: #19c37d;        /* pitch green */
+    --accent-dark: #128a5a;
+    --accent-2: #3b82f6;      /* blue */
+    --gold: #ffcc33;
+    --correct: #19c37d;
+    --wrong: #e5534b;
+    --selected: #2563eb;
+    --radius: 12px;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #16202b 0%, var(--bg) 60%);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.45;
+    padding: 16px;
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* Header */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+h1 { font-size: 22px; letter-spacing: 0.3px; }
+#homeLink { cursor: pointer; user-select: none; }
+.hint { font-size: 13px; color: var(--muted); margin-top: 10px; }
+h2 { font-size: 19px; margin-bottom: 8px; }
+h3 { font-size: 16px; margin-bottom: 8px; }
+
+.tabs { display: flex; gap: 8px; }
+
+.tab {
+    background: var(--bg-elev);
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+.tab:hover { border-color: var(--accent); }
+.tab.active { background: var(--accent); border-color: var(--accent); color: #04120b; font-weight: 700; }
+
+/* Banner */
+.banner {
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg-elev);
+}
+.banner-info { border-color: #21405e; background: #12202e; }
+.banner-warn { border-color: #5e4a16; background: #2a2310; color: #ffe08a; }
+.banner-lock { border-color: var(--accent-dark); background: #0f241a; }
+
+/* Cards */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+}
+.card p { color: var(--muted); margin-bottom: 10px; }
+.card p:last-child { margin-bottom: 0; }
+
+.muted { color: var(--muted); }
+
+/* Name gate */
+.name-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+
+input[type="text"], input[type="number"] {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 16px;
+    flex: 1 1 200px;
+    min-width: 0;
+}
+input:focus { outline: none; border-color: var(--accent); }
+
+.primary-btn {
+    background: var(--accent);
+    color: #04120b;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+.primary-btn:hover { background: #1fd98c; }
+.primary-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.start-msg, .submit-msg { margin-top: 10px; font-size: 13px; color: var(--gold); min-height: 18px; }
+
+/* Scoring table */
+.scoring-table, .leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.scoring-table th, .scoring-table td,
+.leaderboard th, .leaderboard td {
+    padding: 9px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+.scoring-table th:first-child, .scoring-table td:first-child { text-align: left; }
+.scoring-table tfoot td { font-weight: 700; color: var(--gold); }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Bracket */
+.bracket-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.whoami { font-weight: 700; }
+.progress {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.rounds {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+.round-col {
+    flex: 0 0 240px;
+    min-width: 240px;
+}
+.round-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: sticky;
+    top: 0;
+    padding: 6px 4px;
+    margin-bottom: 6px;
+    border-bottom: 2px solid var(--accent-dark);
+}
+.round-pts { font-size: 12px; color: var(--gold); font-weight: 600; }
+
+.game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.vs { text-align: center; font-size: 11px; color: var(--muted); margin: 3px 0; }
+
+.team-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--bg-elev);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-size: 15px;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background 0.12s, border-color 0.12s, transform 0.05s;
+}
+.team-btn:hover { border-color: var(--accent); }
+.team-btn:active { transform: scale(0.99); }
+.team-btn.selected {
+    background: var(--selected);
+    border-color: #5b8cff;
+    color: #fff;
+    font-weight: 700;
+}
+.team-btn:disabled { cursor: default; }
+.team-btn.actual-winner { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.team-btn.pick-correct { background: rgba(25, 195, 125, 0.22); border-color: var(--correct); }
+.team-btn.pick-wrong { background: rgba(229, 83, 75, 0.18); border-color: var(--wrong); }
+
+.team-slot.empty {
+    padding: 11px 12px;
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+    min-height: 44px;
+}
+
+/* Submit area */
+.submit-area { margin-top: 8px; }
+.tiebreaker-box {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.tiebreaker-box label { display: block; margin-bottom: 8px; font-size: 14px; }
+.tiebreaker-box input { max-width: 140px; flex: 0 0 auto; }
+.tiebreaker-box.readonly { display: none; }
+
+/* Leaderboard */
+.leaderboard th { color: var(--muted); font-weight: 600; }
+.leaderboard .name-col { text-align: left; }
+.leaderboard .total { font-weight: 800; color: var(--gold); }
+.lb-row { cursor: pointer; }
+.lb-row:hover td { background: var(--bg-elev); }
+.lb-row.me td { background: rgba(25, 195, 125, 0.12); }
+.you {
+    font-size: 11px;
+    background: var(--accent);
+    color: #04120b;
+    border-radius: 6px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    font-weight: 700;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* Footer */
+footer { margin-top: 24px; text-align: center; color: var(--muted); font-size: 13px; }
+
+/* Toast */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    background: #0a0d12;
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 50;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Mobile */
+@media (max-width: 700px) {
+    h1 { font-size: 19px; }
+    .rounds { flex-direction: column; overflow-x: visible; }
+    .round-col { flex: 1 1 auto; min-width: 0; }
+    .round-title { position: static; }
+    .tab { padding: 8px 14px; }
+}
+
+@media (max-width: 400px) {
+    body { padding: 10px; }
+    .card { padding: 14px; }
+    .team-btn { font-size: 14px; }
+}
