@@ -14,8 +14,11 @@ export function isoToFlag(iso) {
     return String.fromCodePoint(0x1F1E6 + a, 0x1F1E6 + b);
 }
 
-// "🇦🇷 Argentina" for a team object { name, iso }. Falls back gracefully.
+// "🇦🇷 Argentina" for a team object { name, iso, flag? }. A team may carry an
+// explicit `flag` emoji (e.g. England 🏴󠁧󠁢󠁥󠁮󠁧󠁿, which has no alpha-2 code);
+// otherwise the flag is derived from the ISO code. Falls back gracefully.
 export function teamDisplay(team) {
     if (!team) return "—";
-    return `${isoToFlag(team.iso)} ${team.name}`;
+    const flag = team.flag || isoToFlag(team.iso);
+    return `${flag} ${team.name}`;
 }
