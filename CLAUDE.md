@@ -69,7 +69,7 @@ Two collections enforce "hide picks until lock": `entries` (public names) and
 `predictions` (full picks, unreadable until the deadline). Replace the timestamp
 with the **epoch-ms of `meta.lockDeadlineIso`** — keep the two in sync.
 
-Current placeholder `2026-06-28T16:00:00-04:00` = **1782676800000**.
+First R32 kickoff `2026-06-28T19:00:00Z` (noon PT / 3pm ET / 8pm UK) = **1782673200000**.
 
 ```
 rules_version = '2';
@@ -77,14 +77,14 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /entries/{nameKey} {
       allow read: if true;
-      allow write: if request.time.toMillis() < 1782676800000
+      allow write: if request.time.toMillis() < 1782673200000
                    && request.resource.data.name is string
                    && request.resource.data.name.size() > 1
                    && request.resource.data.name.size() < 40;
     }
     match /predictions/{nameKey} {
-      allow read:  if request.time.toMillis() >= 1782676800000;
-      allow write: if request.time.toMillis() <  1782676800000
+      allow read:  if request.time.toMillis() >= 1782673200000;
+      allow write: if request.time.toMillis() <  1782673200000
                    && request.resource.data.nameKey == nameKey
                    && request.resource.data.picks is map
                    && request.resource.data.picks.size() >= 31

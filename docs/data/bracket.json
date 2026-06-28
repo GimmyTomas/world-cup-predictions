@@ -3,8 +3,8 @@
     "tournament": "FIFA World Cup 2026",
     "predictionsOpen": false,
     "opensText": "Predictions open once the group stage ends (today). Check back when the 32 knockout teams are set.",
-    "lockDeadlineIso": "2026-06-28T16:00:00-04:00",
-    "lockNote": "PLACEHOLDER — set to the exact kickoff of the first Round-of-32 match.",
+    "lockDeadlineIso": "2026-06-28T19:00:00Z",
+    "lockNote": "First Round-of-32 kickoff: 2026-06-28 19:00 UTC (12:00 PT / 15:00 ET / 20:00 UK), Los Angeles.",
     "thirdPlacePoints": 4
   },
 
