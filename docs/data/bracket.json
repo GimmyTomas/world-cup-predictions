@@ -122,7 +122,7 @@
   ],
 
   "results": {
-    "R32-1": null, "R32-2": null, "R32-3": null, "R32-4": null,
+    "R32-1": null, "R32-2": null, "R32-3": "CAN", "R32-4": null,
     "R32-5": null, "R32-6": null, "R32-7": null, "R32-8": null,
     "R32-9": null, "R32-10": null, "R32-11": null, "R32-12": null,
     "R32-13": null, "R32-14": null, "R32-15": null, "R32-16": null,
