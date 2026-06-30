@@ -342,7 +342,7 @@ class App {
             predicted winner is the team that actually wins that game — even if you got the
             opponent wrong.</p>
             <div class="table-wrap"><table class="scoring-table">
-              <thead><tr><th>Round</th><th>Per game</th><th>Games</th><th>Max</th></tr></thead>
+              <thead><tr><th>Round</th><th>Points per game</th><th>Games</th><th>Max</th></tr></thead>
               <tbody>${rows.join('')}</tbody>
               <tfoot><tr><td>Total</td><td></td><td></td><td>${maxScore(this.bracket)}</td></tr></tfoot>
             </table></div>
