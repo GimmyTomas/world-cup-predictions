@@ -142,6 +142,11 @@ export class UI {
         }
         this.el.rounds.innerHTML = html;
 
+        // The picks counter pill only makes sense while building your own bracket.
+        // In read-only view (someone else's bracket) it's never updated, so hide it
+        // rather than leave an empty pill floating on the right of the toolbar.
+        this.el.progress.hidden = readOnly;
+
         this.el.finalGoals.disabled = readOnly;
         this.el.submitBtn.hidden = readOnly;
         this.el.tiebreakerBox.classList.toggle('readonly', readOnly);
