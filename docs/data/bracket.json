@@ -126,7 +126,7 @@
     "R32-5": "POR", "R32-6": "ESP", "R32-7": "USA", "R32-8": "BEL",
     "R32-9": "BRA", "R32-10": "NOR", "R32-11": "MEX", "R32-12": "ENG",
     "R32-13": "ARG", "R32-14": "EGY", "R32-15": "SUI", "R32-16": "COL",
-    "R16-1": null, "R16-2": null, "R16-3": null, "R16-4": null,
+    "R16-1": null, "R16-2": "MAR", "R16-3": null, "R16-4": null,
     "R16-5": null, "R16-6": null, "R16-7": null, "R16-8": null,
     "QF-1": null, "QF-2": null, "QF-3": null, "QF-4": null,
     "SF-1": null, "SF-2": null,
