@@ -129,7 +129,7 @@
     "R16-1": "FRA", "R16-2": "MAR", "R16-3": "ESP", "R16-4": "BEL",
     "R16-5": "NOR", "R16-6": "ENG", "R16-7": "ARG", "R16-8": "SUI",
     "QF-1": "FRA", "QF-2": "ESP", "QF-3": "ENG", "QF-4": "ARG",
-    "SF-1": null, "SF-2": null,
+    "SF-1": "ESP", "SF-2": null,
     "F-1": null,
     "TP-1": null,
     "finalTotalGoals": null
