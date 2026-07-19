@@ -236,7 +236,10 @@ input:focus { outline: none; border-color: var(--accent); }
 }
 .tiebreaker-box label { display: block; margin-bottom: 8px; font-size: 14px; }
 .tiebreaker-box input { max-width: 140px; flex: 0 0 auto; }
-.tiebreaker-box.readonly { display: none; }
+/* Read-only bracket view: hide the editable input and show the prediction. */
+.tiebreaker-box.readonly input { display: none; }
+.tiebreaker-readout { margin: 0; font-size: 18px; }
+.tiebreaker-readout .muted { font-size: 14px; }
 
 /* Leaderboard */
 .leaderboard th { color: var(--muted); font-weight: 600; }

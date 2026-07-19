@@ -152,9 +152,9 @@ class App {
         this.viewingOther = false;
         this.ui.renderBracket(this.bracket, this.picks, {
             readOnly: false,
-            headline: `${this.me ? this.me.name + " — " : ''}make your picks`
+            headline: `${this.me ? this.me.name + " — " : ''}make your picks`,
+            tiebreaker: this.tiebreaker
         });
-        this.ui.setTiebreaker(this.tiebreaker);
         this.refreshEditingState_();
         this.ui.showScreen('bracket');
     }
@@ -164,7 +164,8 @@ class App {
         this.picks = this.bracket.setPick(this.picks, gameId, teamId);
         this.ui.renderBracket(this.bracket, this.picks, {
             readOnly: false,
-            headline: `${this.me ? this.me.name + " — " : ''}make your picks`
+            headline: `${this.me ? this.me.name + " — " : ''}make your picks`,
+            tiebreaker: this.tiebreaker
         });
         this.refreshEditingState_();
         this.cacheDraft_();
@@ -244,9 +245,8 @@ class App {
         if (this.locked) {
             const results = this.bracket.data.results || {};
             const rows = buildLeaderboard(this.allPredictions, this.bracket, results);
-            const goalsKnown = results.finalTotalGoals != null;
             this.ui.renderLeaderboardLocked(rows, maxScore(this.bracket),
-                this.me ? this.me.nameKey : null, goalsKnown);
+                this.me ? this.me.nameKey : null);
         } else {
             this.ui.renderLeaderboardOpen(this.entries, this.deadlineText_());
         }
@@ -292,20 +292,23 @@ class App {
         if (!pred) {
             // Could be the current user before lock with only a local draft.
             if (this.me && this.me.nameKey === nameKey) {
-                this.renderReadOnlyBracket_(this.picks, `${this.me.name} — your bracket`);
+                this.renderReadOnlyBracket_(this.picks, `${this.me.name} — your bracket`, this.tiebreaker);
                 return;
             }
             this.ui.toast('Bracket not available.');
             return;
         }
-        this.renderReadOnlyBracket_(pred.picks, `${pred.name}'s bracket`);
+        const guess = pred.tiebreaker ? pred.tiebreaker.finalTotalGoals : null;
+        this.renderReadOnlyBracket_(pred.picks, `${pred.name}'s bracket`, guess);
     }
 
-    renderReadOnlyBracket_(picks, headline) {
+    renderReadOnlyBracket_(picks, headline, tiebreaker = null) {
         this.viewingOther = true;
         const results = this.bracket.data.results || {};
         this.ui.renderBracket(this.bracket, this.bracket.normalize(picks || {}), {
-            readOnly: true, results, headline
+            readOnly: true, results, headline,
+            tiebreaker,
+            actualFinalGoals: results.finalTotalGoals == null ? null : results.finalTotalGoals
         });
         this.ui.showScreen('bracket');
     }

@@ -33,6 +33,7 @@ export class UI {
             rounds: document.getElementById('rounds'),
             tiebreakerBox: document.getElementById('tiebreakerBox'),
             finalGoals: document.getElementById('finalGoals'),
+            tiebreakerReadout: document.getElementById('tiebreakerReadout'),
             submitBtn: document.getElementById('submitBtn'),
             submitMsg: document.getElementById('submitMsg'),
             leaderboardScreen: document.getElementById('leaderboardScreen'),
@@ -127,7 +128,10 @@ export class UI {
     // --- bracket -----------------------------------------------------------
 
     renderBracket(bracket, picks, opts) {
-        const { readOnly = false, results = null, headline = '' } = opts || {};
+        const {
+            readOnly = false, results = null, headline = '',
+            tiebreaker = null, actualFinalGoals = null
+        } = opts || {};
         this.el.whoami.textContent = headline;
 
         let html = '';
@@ -150,6 +154,33 @@ export class UI {
         this.el.finalGoals.disabled = readOnly;
         this.el.submitBtn.hidden = readOnly;
         this.el.tiebreakerBox.classList.toggle('readonly', readOnly);
+        this.renderTiebreaker_(readOnly, tiebreaker, actualFinalGoals);
+    }
+
+    // The tiebreaker box doubles as an editable input (own bracket) and a
+    // read-only readout of a player's Final total-goals prediction.
+    renderTiebreaker_(readOnly, guess, actualFinalGoals) {
+        if (!readOnly) {
+            this.el.tiebreakerBox.hidden = false;
+            this.el.tiebreakerReadout.hidden = true;
+            this.setTiebreaker(guess);
+            return;
+        }
+        // Read-only: clear the (hidden) input so no stale value lingers, then
+        // show the prediction — or hide the box entirely when there's nothing
+        // to show (e.g. the "pick a player" placeholder view).
+        this.setTiebreaker(null);
+        if (guess == null) {
+            this.el.tiebreakerBox.hidden = true;
+            return;
+        }
+        this.el.tiebreakerBox.hidden = false;
+        this.el.tiebreakerReadout.hidden = false;
+        let html = `<strong>${guess}</strong> goal${guess === 1 ? '' : 's'}`;
+        if (actualFinalGoals != null) {
+            html += ` <span class="muted">· actual: ${actualFinalGoals}</span>`;
+        }
+        this.el.tiebreakerReadout.innerHTML = html;
     }
 
     gameCardHtml_(bracket, game, picks, readOnly, results) {
@@ -219,8 +250,9 @@ export class UI {
         this.el.leaderboardContent.innerHTML = html;
     }
 
-    // Post-lock: full ranked table.
-    renderLeaderboardLocked(rows, maxPts, currentNameKey, goalsKnown) {
+    // Post-lock: full ranked table. Each player's Final total-goals guess now
+    // lives on their own bracket page rather than in a leaderboard column.
+    renderLeaderboardLocked(rows, maxPts, currentNameKey) {
         if (rows.length === 0) {
             this.el.leaderboardContent.innerHTML =
                 `<div class="card"><h2>Leaderboard</h2><p class="muted">No predictions were submitted.</p></div>`;
@@ -231,7 +263,6 @@ export class UI {
         html += `<div class="table-wrap"><table class="leaderboard"><thead><tr>` +
             `<th>#</th><th class="name-col">Name</th><th>Total</th>` +
             `<th>R32</th><th>R16</th><th>QF</th><th>SF</th><th>F</th><th>3rd</th>` +
-            (goalsKnown ? `<th title="Final total-goals guess">Goals</th>` : ``) +
             `</tr></thead><tbody>`;
         for (const r of rows) {
             const me = r.nameKey === currentNameKey ? ' me' : '';
@@ -241,7 +272,6 @@ export class UI {
                 `<td class="total">${r.total}</td>` +
                 `<td>${r.byRound.R32}</td><td>${r.byRound.R16}</td><td>${r.byRound.QF}</td>` +
                 `<td>${r.byRound.SF}</td><td>${r.byRound.F}</td><td>${r.thirdPlace}</td>` +
-                (goalsKnown ? `<td>${r.finalGoalsGuess == null ? '–' : r.finalGoalsGuess}</td>` : ``) +
                 `</tr>`;
         }
         html += `</tbody></table></div></div>`;
